@@ -1,26 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Jtm
 {
-    class SongList
+    class ContextObject
     {
-        
-        
-
-
-        
-
-       
-
-      
-        
-
+        public Player NewGame { get; set; }
+        public Points GamePoints { get; set; }
 
     }
 }

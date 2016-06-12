@@ -7,15 +7,14 @@ using System.Windows.Media;
 
 namespace Jtm
 {
-    public class Player:INotifyPropertyChanged
+    public class Player:Property
     {
         //Uri uri = new Uri(@"C:\Users\Gorky\Documents\Visual Studio 2015\Projects\Jtm\Jtm\bin\Debug\myfile.mp3");
-        Uri uri; //pierwszy commitfdhf
+        Uri uri; 
         MediaPlayer player = new MediaPlayer();
         private int _alert;
         private String[] files;
-
-        private String[] allFiles;//sadfsadf
+        private String[] allFiles;
         private String[] names;
         private int numberclicked;
         public int NumberClicked
@@ -54,19 +53,16 @@ namespace Jtm
         }
 
         //public object DataContext { get; private set; }
-        public event PropertyChangedEventHandler PropertyChanged; //ten kod obsługuje aktualizacje labela (binding)
-        private void OnPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
+        
 
         public void PlayerInit()
         {
 
-
-            uri = new Uri(allFiles[NumberClicked]);
-            player.Open(uri);
+            if (NumberClicked != -1)
+            {
+                uri = new Uri(allFiles[NumberClicked]);
+                player.Open(uri);
+            }
 
         }
 
@@ -129,7 +125,7 @@ namespace Jtm
                 Alert = files.Length;
 
             }
-            if (files != null)
+            if (files != null && names!=null)
             {
                 MakeNames();
             }
@@ -163,7 +159,7 @@ namespace Jtm
             }
         }
 
-
+        
 
 
     }

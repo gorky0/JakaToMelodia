@@ -56,8 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ContextObject.cs" />
     <Compile Include="Song.cs" />
-    <Compile Include="SongList.cs" />
+    <Compile Include="Property.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,7 +68,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Player.cs" />
-    <Compile Include="Runda.cs" />
+    <Compile Include="Points.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
