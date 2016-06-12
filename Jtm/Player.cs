@@ -10,7 +10,7 @@ namespace Jtm
     public class Player:INotifyPropertyChanged
     {
         //Uri uri = new Uri(@"C:\Users\Gorky\Documents\Visual Studio 2015\Projects\Jtm\Jtm\bin\Debug\myfile.mp3");
-        Uri uri;
+        Uri uri; //pierwszy commitfdhf
         MediaPlayer player = new MediaPlayer();
         private int _alert;
         private String[] files;
