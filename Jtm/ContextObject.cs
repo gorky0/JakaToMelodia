@@ -8,7 +8,7 @@ namespace Jtm
 {
     class ContextObject
     {
-        public Player NewGame { get; set; }
+        public Player NewPlayer { get; set; }
         public Points GamePoints { get; set; }
 
     }

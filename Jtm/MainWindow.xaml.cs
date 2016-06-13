@@ -10,12 +10,13 @@ namespace Jtm
     {
         ContextObject newContext;
         bool isPlaying = false;
+        enum Status { Failed=2, Ok=3 }
         public MainWindow()
         {
             
-            //lol.PlayerInit();
+         
             newContext = new ContextObject();
-            newContext.NewGame = new Player();
+            newContext.NewPlayer = new Player();
             newContext.GamePoints = new Points();
             InitializeComponent();
             DataContext = newContext;
@@ -24,14 +25,16 @@ namespace Jtm
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
+            UkryjX();
             isPlaying = true;
-            newContext.NewGame.PlaySong();
+            newContext.NewPlayer.PlaySong();
             
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            newContext.NewGame.StopSong();
+            isPlaying = false;
+            newContext.NewPlayer.StopSong();
         }
 
         private void button2_Click(object sender, RoutedEventArgs e)
@@ -39,18 +42,18 @@ namespace Jtm
             if (listBox.Items.Count > 0)
             {
 
-                newContext.NewGame.StopSong();
-                newContext.NewGame.ClosePlayer();
+                newContext.NewPlayer.StopSong();
+                newContext.NewPlayer.ClosePlayer();
                 listBox.Items.Clear();
-                newContext.NewGame.Names = null;
+                newContext.NewPlayer.Names = null;
             }
             
-            newContext.NewGame.Browse();
-            if (newContext.NewGame.Names != null)
+            newContext.NewPlayer.Browse();
+            if (newContext.NewPlayer.Names != null)
             {
-                for (int j = 0; j < newContext.NewGame.Names.Length; j++)
+                for (int j = 0; j < newContext.NewPlayer.Names.Length; j++)
                 {
-                    listBox.Items.Add(newContext.NewGame.Names[j]);
+                    listBox.Items.Add(newContext.NewPlayer.Names[j]);
 
                 }
             }
@@ -59,21 +62,25 @@ namespace Jtm
 
         private void button3_Click(object sender, RoutedEventArgs e)
         {
-            newContext.NewGame.Alert = 4;
+            newContext.NewPlayer.Alert = 4;
             
 
         }
 
         private void button4_Click(object sender, RoutedEventArgs e)
         {
-            newContext.NewGame.PauseSong();
+            isPlaying = false;
+            newContext.NewPlayer.PauseSong();
         }
 
         private void listBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-
-            newContext.NewGame.NumberClicked = listBox.SelectedIndex;
-            newContext.NewGame.PlayerInit();
+            UkryjX();
+            UkryjPrzyciski();
+            isPlaying = false;
+            newContext.NewPlayer.NumberClicked = listBox.SelectedIndex;
+            newContext.GamePoints.ResetStatus();
+            newContext.NewPlayer.PlayerInit();
 
         }
 
@@ -82,9 +89,9 @@ namespace Jtm
             if (isPlaying == true)
             {
                 
-                if (e.Key == Key.A)
+                if (e.Key == Key.A && newContext.GamePoints.StatusOne ==(int) Status.Ok)
                 {
-                    newContext.NewGame.StopSong();
+                    newContext.NewPlayer.PauseSong();
                     isPlaying = false;
                     button5.Visibility = Visibility.Visible;
                     button6.Visibility = Visibility.Hidden;
@@ -94,9 +101,9 @@ namespace Jtm
                     button10.Visibility = Visibility.Hidden;
                 
                 }
-                else if (e.Key == Key.S)
+                else if (e.Key == Key.S && newContext.GamePoints.StatusTwo == (int)Status.Ok)
                 {
-                    newContext.NewGame.StopSong();
+                    newContext.NewPlayer.PauseSong();
                     isPlaying = false;
                     button5.Visibility = Visibility.Hidden;
                     button6.Visibility = Visibility.Visible;
@@ -105,9 +112,9 @@ namespace Jtm
                     button9.Visibility = Visibility.Visible;
                     button10.Visibility = Visibility.Hidden;
                 }
-                else if (e.Key == Key.D)
+                else if (e.Key == Key.D && newContext.GamePoints.StatusThree == (int)Status.Ok)
                 {
-                    newContext.NewGame.StopSong();
+                    newContext.NewPlayer.PauseSong();
                     isPlaying = false;
                     button5.Visibility = Visibility.Hidden;
                     button6.Visibility = Visibility.Hidden;
@@ -129,11 +136,68 @@ namespace Jtm
             button10.Visibility = Visibility.Hidden;
         }
 
-        private void button5_Click(object sender, RoutedEventArgs e)
+        private void UkryjX()
         {
-            newContext.GamePoints.PlayerOne++;
-            UkryjPrzyciski();
+            label10.Visibility = Visibility.Hidden;
+            label11.Visibility = Visibility.Hidden;
+            label12.Visibility = Visibility.Hidden;
+
         }
 
+        private void button5_Click(object sender, RoutedEventArgs e)
+        {
+            UkryjX();
+            newContext.GamePoints.PlayerOne++;
+
+            newContext.GamePoints.ResetStatus();
+
+            UkryjPrzyciski();
+            newContext.NewPlayer.StopSong();
+        }
+
+        private void button8_Click(object sender, RoutedEventArgs e)
+        {
+            label10.Visibility = Visibility.Visible;
+            UkryjPrzyciski();
+            newContext.GamePoints.StatusOne = (int)Status.Failed;
+            newContext.NewPlayer.PlaySong();
+            isPlaying = true;
+        }
+
+        private void button6_Click(object sender, RoutedEventArgs e)
+        {
+            UkryjX();
+            newContext.GamePoints.PlayerTwo++;
+            newContext.GamePoints.ResetStatus();
+            UkryjPrzyciski();
+            newContext.NewPlayer.StopSong();
+        }
+
+        private void button9_Click(object sender, RoutedEventArgs e)
+        {
+            label11.Visibility = Visibility.Visible;
+            UkryjPrzyciski();
+            newContext.GamePoints.StatusTwo = (int)Status.Failed;
+            newContext.NewPlayer.PlaySong();
+            isPlaying = true;
+        }
+
+        private void button7_Click(object sender, RoutedEventArgs e)
+        {
+            UkryjX();
+            newContext.GamePoints.PlayerThree++;
+            newContext.GamePoints.ResetStatus();
+            UkryjPrzyciski();
+            newContext.NewPlayer.StopSong();
+        }
+
+        private void button10_Click(object sender, RoutedEventArgs e)
+        {
+            label12.Visibility = Visibility.Visible;
+            UkryjPrzyciski();
+            newContext.GamePoints.StatusThree = (int)Status.Failed;
+            newContext.NewPlayer.PlaySong();
+            isPlaying = true;
+        }
     }
 }

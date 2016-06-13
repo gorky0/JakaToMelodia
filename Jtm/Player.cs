@@ -9,13 +9,14 @@ namespace Jtm
 {
     public class Player:Property
     {
-        //Uri uri = new Uri(@"C:\Users\Gorky\Documents\Visual Studio 2015\Projects\Jtm\Jtm\bin\Debug\myfile.mp3");
+        
         Uri uri; 
         MediaPlayer player = new MediaPlayer();
         private int _alert;
         private String[] files;
         private String[] allFiles;
         private String[] names;
+        
         private int numberclicked;
         public int NumberClicked
         {
@@ -89,7 +90,7 @@ namespace Jtm
             player.Pause();
 
         }
-        public static string Odwroc(string s)
+        public static string Invert(string s)
         {
             char[] charArray = s.ToCharArray();
             Array.Reverse(charArray);
@@ -138,7 +139,7 @@ namespace Jtm
             
             for (int j = 0; j < files.Length; j++)
             {
-                String strink = Odwroc(files[j]);
+                String strink = Invert(files[j]);
                 for (int i = 0; i < strink.Length; i++)
                 {
                     if (strink[i] == '\\')
@@ -154,7 +155,7 @@ namespace Jtm
 
             for (int j = 0; j < Names.Length; j++)
             {
-                Names[j] = Odwroc(Names[j]);
+                Names[j] = Invert(Names[j]);
 
             }
         }
