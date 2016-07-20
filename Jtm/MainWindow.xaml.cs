@@ -23,21 +23,21 @@ namespace Jtm
             
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void button_Click(object sender, RoutedEventArgs e)//play/start
         {
-            UkryjX();
+            HideX();
             isPlaying = true;
             newContext.NewPlayer.PlaySong();
             
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void button1_Click(object sender, RoutedEventArgs e)//Stop
         {
             isPlaying = false;
             newContext.NewPlayer.StopSong();
         }
 
-        private void button2_Click(object sender, RoutedEventArgs e)
+        private void button2_Click(object sender, RoutedEventArgs e)//Wczytaj
         {
             if (listBox.Items.Count > 0)
             {
@@ -60,14 +60,14 @@ namespace Jtm
 
         }
 
-        private void button3_Click(object sender, RoutedEventArgs e)
-        {
-            newContext.NewPlayer.Alert = 4;
+        //private void button3_Click(object sender, RoutedEventArgs e)//Testowy button
+        //{
+        //    newContext.NewPlayer.Alert = 4;
             
 
-        }
+        //}
 
-        private void button4_Click(object sender, RoutedEventArgs e)
+        private void button4_Click(object sender, RoutedEventArgs e)//Pauza
         {
             isPlaying = false;
             newContext.NewPlayer.PauseSong();
@@ -75,8 +75,8 @@ namespace Jtm
 
         private void listBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            UkryjX();
-            UkryjPrzyciski();
+            HideX();
+            HidePointButtons();
             isPlaying = false;
             newContext.NewPlayer.NumberClicked = listBox.SelectedIndex;
             newContext.GamePoints.ResetStatus();
@@ -84,7 +84,7 @@ namespace Jtm
 
         }
 
-        private void Window_KeyDown(object sender, KeyEventArgs e)//kto pierwszy naciśnie
+        private void Window_KeyDown(object sender, KeyEventArgs e)//gracz naciska przycisk
         {
             if (isPlaying == true)
             {
@@ -127,7 +127,7 @@ namespace Jtm
             }
         }
 
-        private void UkryjPrzyciski() {
+        private void HidePointButtons() {
             button5.Visibility = Visibility.Hidden;
             button6.Visibility = Visibility.Hidden;
             button7.Visibility = Visibility.Hidden;
@@ -136,7 +136,7 @@ namespace Jtm
             button10.Visibility = Visibility.Hidden;
         }
 
-        private void UkryjX()
+        private void HideX()
         {
             label10.Visibility = Visibility.Hidden;
             label11.Visibility = Visibility.Hidden;
@@ -144,57 +144,57 @@ namespace Jtm
 
         }
 
-        private void button5_Click(object sender, RoutedEventArgs e)
+        private void button5_Click(object sender, RoutedEventArgs e)//+1 1szy gracz
         {
-            UkryjX();
+            HideX();
             newContext.GamePoints.PlayerOne++;
 
             newContext.GamePoints.ResetStatus();
 
-            UkryjPrzyciski();
+            HidePointButtons();
             newContext.NewPlayer.StopSong();
         }
 
-        private void button8_Click(object sender, RoutedEventArgs e)
+        private void button8_Click(object sender, RoutedEventArgs e)//0
         {
             label10.Visibility = Visibility.Visible;
-            UkryjPrzyciski();
+            HidePointButtons();
             newContext.GamePoints.StatusOne = (int)Status.Failed;
             newContext.NewPlayer.PlaySong();
             isPlaying = true;
         }
 
-        private void button6_Click(object sender, RoutedEventArgs e)
+        private void button6_Click(object sender, RoutedEventArgs e)//+1 2gi gracz
         {
-            UkryjX();
+            HideX();
             newContext.GamePoints.PlayerTwo++;
             newContext.GamePoints.ResetStatus();
-            UkryjPrzyciski();
+            HidePointButtons();
             newContext.NewPlayer.StopSong();
         }
 
-        private void button9_Click(object sender, RoutedEventArgs e)
+        private void button9_Click(object sender, RoutedEventArgs e)//0
         {
             label11.Visibility = Visibility.Visible;
-            UkryjPrzyciski();
+            HidePointButtons();
             newContext.GamePoints.StatusTwo = (int)Status.Failed;
             newContext.NewPlayer.PlaySong();
             isPlaying = true;
         }
 
-        private void button7_Click(object sender, RoutedEventArgs e)
+        private void button7_Click(object sender, RoutedEventArgs e)//+1 3ci gracz
         {
-            UkryjX();
+            HideX();
             newContext.GamePoints.PlayerThree++;
             newContext.GamePoints.ResetStatus();
-            UkryjPrzyciski();
+            HidePointButtons();
             newContext.NewPlayer.StopSong();
         }
 
-        private void button10_Click(object sender, RoutedEventArgs e)
+        private void button10_Click(object sender, RoutedEventArgs e)//0
         {
             label12.Visibility = Visibility.Visible;
-            UkryjPrzyciski();
+            HidePointButtons();
             newContext.GamePoints.StatusThree = (int)Status.Failed;
             newContext.NewPlayer.PlaySong();
             isPlaying = true;
