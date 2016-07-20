@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Jtm"
         mc:Ignorable="d"
-        Title="Jaka to piosenka?" Height="340" Width="1000" ResizeMode="NoResize" KeyDown="Window_KeyDown">
+        Title="Jaka to piosenka?" Height="340" Width="1000" ResizeMode="NoResize" KeyDown="Window_KeyDown" Icon="Wwalczyszyn-Iwindows-Music-Library.ico">
     <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
