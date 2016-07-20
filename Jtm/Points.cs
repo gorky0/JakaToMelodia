@@ -51,19 +51,7 @@ namespace Jtm
             }
         }
 
-        private int round = 1;
-        public int Round
-        {
-            get
-            {
-                return Round;
-            }
-            set
-            {
-                Round = value;
-                OnPropertyChanged("Round");
-            }
-        }
+       
 
 
         public void ResetStatus() {
