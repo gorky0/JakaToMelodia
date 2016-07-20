@@ -7,7 +7,7 @@ using System.Windows.Media;
 
 namespace Jtm
 {
-    public class Player:Property
+    public class Player:Property //klasa glowna
     {
         
         Uri uri; 
