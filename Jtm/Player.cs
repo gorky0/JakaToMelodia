@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Media;
 
@@ -108,9 +109,9 @@ namespace Jtm
 
             if (!string.IsNullOrWhiteSpace(fbd.SelectedPath))
             {
-                
-                allFiles = Directory.GetFiles(fbd.SelectedPath);
-                files = Directory.GetFiles(fbd.SelectedPath);
+
+                allFiles = Directory.GetFiles(fbd.SelectedPath, "*.mp3", SearchOption.AllDirectories);
+                files = Directory.GetFiles(fbd.SelectedPath, "*.mp3", SearchOption.AllDirectories);
                 for (int i = 0; i < files.Length; i++)
                 {
                     
